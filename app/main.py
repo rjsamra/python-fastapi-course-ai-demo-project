@@ -14,16 +14,35 @@ def root():
 
 @app.get("/user")
 def read_user():
+    """
+    Return a list of users registered in the system.
+
+    Returns:
+        list: list of users
+    """
     return api.read_user()
 
 
 @app.get("/question/{position}", status_code=200)
 def read_questions(position: int, response: Response):
+    """
+    Return a question object from the database given its position.
+
+    Args:
+        position (int): the position of the question in the database
+        response (Response): the response object
+
+    Returns:
+        dict: the question object
+    """
+    # Read the question by its position
     question = api.read_questions(position)
 
+    # If the question does not exist, return an error
     if not question:
         raise HTTPException(status_code=400, detail="Error")
 
+    # Return the question
     return question
 
 
