@@ -9,6 +9,15 @@ def read_user():
 
 
 def read_questions(position: int):
+    """
+    Read question by position.
+
+    Args:
+        position (int): The position of the question to be read.
+
+    Returns:
+        dict: The question read.
+    """
     with open('data/questions.json') as stream:
         questions = json.load(stream)
 
